@@ -60,10 +60,11 @@ export default function ProductDetailV2({
           <X className="h-5 w-5" />
         </button>
 
-        {/* Hero com ícone SVG e cor da categoria */}
-        <div className={`relative flex h-52 items-center justify-center ${theme.btn.split(" ")[0]} rounded-t-3xl`}>
-          <div className="text-white drop-shadow-lg">
-            <ProductIcon name={product.name} category={product.category} className="h-28 w-28" />
+        {/* Hero com ícone e gradiente da categoria */}
+        <div className={`relative flex h-52 items-center justify-center overflow-hidden bg-gradient-to-br ${theme.gradient} rounded-t-3xl`}>
+          <div className="absolute -right-8 -top-8 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
+          <div className="z-10 text-white drop-shadow-lg">
+            <ProductIcon name={product.name} category={product.category} className="text-[7rem]" />
           </div>
           <span
             className={`absolute left-5 top-5 rounded-full px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider shadow-sm ${theme.badge}`}

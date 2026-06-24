@@ -1,18 +1,16 @@
 import { CATEGORIES } from "@/lib/types";
-import { CervejasIcon, DestiladosIcon, TabacariaIcon, CombosGeloIcon } from "@/components/v2/icons/CategoryIcons";
-import type { ComponentType } from "react";
+import { FaBeerMugEmpty, FaWineBottle, FaSmoking, FaGift } from "react-icons/fa6";
+import type { IconType } from "react-icons";
 
 type HubCard = {
   id: string;
   title: string;
   sub: string;
   badge: string;
-  Icon: ComponentType<{ className?: string }>;
+  Icon: IconType;
   colorClass: string;
   activeRing: string;
   textColor: string;
-  iconBg: string;
-  iconColor: string;
   rotate: string;
 };
 
@@ -22,12 +20,10 @@ const HUB_CARDS: HubCard[] = [
     title: "CERVEJAS GELADAS",
     sub: "Pilsen, IPA e Long Necks",
     badge: "Trinca",
-    Icon: CervejasIcon,
+    Icon: FaBeerMugEmpty,
     colorClass: "bg-amber-500 shadow-amber-200/50 hover:bg-amber-600",
     activeRing: "ring-4 ring-amber-500 ring-offset-4 ring-offset-orange-50",
     textColor: "text-amber-50",
-    iconBg: "bg-white/20",
-    iconColor: "text-white",
     rotate: "rotate-12 group-hover:rotate-0",
   },
   {
@@ -35,12 +31,10 @@ const HUB_CARDS: HubCard[] = [
     title: "DESTILADOS PREMIUM",
     sub: "Whisky, Gin e Vodka",
     badge: "Cheers",
-    Icon: DestiladosIcon,
+    Icon: FaWineBottle,
     colorClass: "bg-purple-800 shadow-purple-200/50 hover:bg-purple-900",
     activeRing: "ring-4 ring-purple-700 ring-offset-4 ring-offset-orange-50",
     textColor: "text-purple-100",
-    iconBg: "bg-amber-400/90",
-    iconColor: "text-purple-900",
     rotate: "-rotate-12 group-hover:rotate-0",
   },
   {
@@ -48,25 +42,21 @@ const HUB_CARDS: HubCard[] = [
     title: "TABACARIA SELECT",
     sub: "Cigarros, Narguilé e Sedas",
     badge: "Select",
-    Icon: TabacariaIcon,
+    Icon: FaSmoking,
     colorClass: "bg-slate-800 shadow-slate-300/50 hover:bg-slate-900",
     activeRing: "ring-4 ring-slate-800 ring-offset-4 ring-offset-orange-50",
     textColor: "text-slate-300",
-    iconBg: "bg-slate-600/80",
-    iconColor: "text-slate-200",
-    rotate: "rotate-3 group-hover:rotate-12",
+    rotate: "rotate-3 group-hover:-rotate-3",
   },
   {
     id: "Combos/Gelo",
     title: "COMBOS & GELO",
     sub: "Kits para a galera e gelo",
     badge: "Festa",
-    Icon: CombosGeloIcon,
+    Icon: FaGift,
     colorClass: "bg-red-600 shadow-red-200/50 hover:bg-red-700",
     activeRing: "ring-4 ring-red-500 ring-offset-4 ring-offset-orange-50",
     textColor: "text-red-100",
-    iconBg: "bg-white/20",
-    iconColor: "text-white",
     rotate: "-rotate-6 group-hover:rotate-0",
   },
 ];
@@ -123,10 +113,8 @@ export default function CategoryHubV2({
 
               <div className="absolute -bottom-4 -right-4 h-32 w-32 rounded-full bg-white/10 blur-2xl transition-transform duration-500 group-hover:scale-125" />
 
-              <div className="absolute right-6 top-6">
-                <div className={`flex h-16 w-16 items-center justify-center rounded-2xl shadow-xl transition-transform duration-300 ${card.iconBg} ${card.iconColor} ${card.rotate}`}>
-                  <card.Icon className="h-9 w-9" />
-                </div>
+              <div className={`absolute right-5 top-5 text-white/80 transition-transform duration-300 ${card.rotate}`}>
+                <card.Icon className="text-[3.5rem]" />
               </div>
 
               {isActive && (

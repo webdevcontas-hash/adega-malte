@@ -37,11 +37,13 @@ export default function ProductCardV2({
       className="group flex h-full cursor-pointer flex-col justify-between rounded-2xl border border-orange-100 bg-white p-4 shadow-sm transition-all duration-300 hover:border-orange-200 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
     >
       <div>
-        <div className="relative mb-3.5 flex h-36 items-center justify-center overflow-hidden rounded-xl bg-slate-50 transition-transform duration-300 group-hover:scale-[1.02]">
-          <div className={`z-10 transition-transform duration-300 group-hover:scale-110 ${theme.text}`}>
-            <ProductIcon name={product.name} category={product.category} className="h-16 w-16" />
+        <div className={`relative mb-3.5 flex h-36 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br ${theme.gradient} transition-transform duration-300 group-hover:scale-[1.02]`}>
+          {/* reflexo de brilho no canto */}
+          <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-white/10 blur-xl" />
+          <div className="z-10 text-white drop-shadow-md transition-transform duration-300 group-hover:scale-110">
+            <ProductIcon name={product.name} category={product.category} className="text-[3.5rem]" />
           </div>
-          <span className={`absolute left-2.5 top-2.5 rounded-full px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider shadow-sm ${theme.badge}`}>
+          <span className="absolute left-2.5 top-2.5 rounded-full bg-black/20 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider text-white backdrop-blur-sm">
             {product.category}
           </span>
         </div>
