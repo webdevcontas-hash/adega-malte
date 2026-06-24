@@ -6,14 +6,14 @@
    estrutura em carvão escuro, prateleiras em madeira natural.
 --------------------------------------------------------------------------- */
 :root {
-  --background: #faf3eb;   /* creme quente — fachada iluminada */
-  --foreground: #1c1208;   /* carvão escuro — cor da porta de metal */
-  --card: #ffffff;
-  --border: #e8d4bb;       /* bege quente — madeira clara */
-  --muted: #8b7355;        /* marrom médio — madeira natural */
-  --accent: #b8541d;       /* terracota — cor dominante do interior */
+  --background: #18120a;   /* carvão escuro — fachada noturna */
+  --foreground: #f5e6d0;   /* creme quente — texto sobre escuro */
+  --card: #231a10;         /* carvão médio — cards e modais */
+  --border: #3d2e1c;       /* borda quente escura */
+  --muted: #9c8060;        /* marrom médio — madeira */
+  --accent: #b8541d;       /* terracota — interior da loja */
   --accent-dark: #8c3a10;  /* terracota escura */
-  --accent-light: #f5e4d0; /* terracota clarinha */
+  --accent-light: #3d1f0d; /* terracota muito escura */
 }
 
 @theme inline {

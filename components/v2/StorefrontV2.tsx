@@ -130,12 +130,12 @@ function StorefrontV2Content({ products }: { products: ProductModel[] }) {
             <div className="mx-auto max-w-7xl px-4 pb-4 md:px-8">
               <button
                 onClick={() => setNarguilhOpen(true)}
-                className="flex w-full items-center gap-3 rounded-2xl border-2 border-dashed border-slate-300 bg-white px-5 py-4 text-left transition hover:border-orange-300 hover:bg-orange-50"
+                className="flex w-full items-center gap-3 rounded-2xl border-2 border-dashed border-border bg-card px-5 py-4 text-left transition hover:border-accent/50 hover:bg-accent-light"
               >
                 <span className="text-3xl">💨</span>
                 <div>
-                  <p className="font-bold text-slate-800">Monta seu Narguilé</p>
-                  <p className="text-xs text-slate-400">Escolha essência, carvão e extras passo a passo.</p>
+                  <p className="font-bold text-foreground">Monta seu Narguilé</p>
+                  <p className="text-xs text-muted">Escolha essência, carvão e extras passo a passo.</p>
                 </div>
                 <span className="ml-auto text-orange-500 font-bold text-sm">→</span>
               </button>
@@ -145,21 +145,21 @@ function StorefrontV2Content({ products }: { products: ProductModel[] }) {
           <main className="mx-auto max-w-7xl px-4 md:px-8">
             <div className="mb-6 flex items-center justify-between">
               <div>
-                <h3 className="font-display text-xl font-black uppercase italic tracking-tight text-slate-800 underline decoration-orange-400 underline-offset-4">
+                <h3 className="font-display text-xl font-black uppercase italic tracking-tight text-foreground underline decoration-accent underline-offset-4">
                   {selectedCategory ? CATEGORY_HEADINGS[selectedCategory] ?? selectedCategory : "Todos os Favoritos da Galera"}
                 </h3>
-                {searchQuery && <p className="mt-1 text-xs text-slate-400">Resultados para &quot;{searchQuery}&quot;</p>}
+                {searchQuery && <p className="mt-1 text-xs text-muted">Resultados para &quot;{searchQuery}&quot;</p>}
               </div>
-              <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-400">
+              <span className="rounded-full bg-card px-3 py-1.5 text-xs font-bold text-muted border border-border">
                 {filteredProducts.length} {filteredProducts.length === 1 ? "item" : "itens"}
               </span>
             </div>
 
             {filteredProducts.length === 0 ? (
-              <div className="mx-auto my-8 max-w-md rounded-3xl border border-orange-100 bg-white p-12 text-center">
+              <div className="mx-auto my-8 max-w-md rounded-3xl border border-border bg-card p-12 text-center">
                 <span className="text-4xl">🔍</span>
-                <h4 className="mt-4 font-bold text-slate-800">Nenhum produto encontrado</h4>
-                <p className="mt-2 text-xs text-slate-400">
+                <h4 className="mt-4 font-bold text-foreground">Nenhum produto encontrado</h4>
+                <p className="mt-2 text-xs text-muted">
                   Não encontramos correspondências. Tente outros termos ou explore os departamentos acima.
                 </p>
                 <button
@@ -202,10 +202,10 @@ function StorefrontV2Content({ products }: { products: ProductModel[] }) {
       )}
 
       {/* Rodapé com status das lojas */}
-      <footer className="mt-auto flex flex-col items-center justify-between gap-4 border-t border-slate-100 bg-white px-4 py-5 md:flex-row md:px-8">
+      <footer className="mt-auto flex flex-col items-center justify-between gap-4 border-t border-border bg-card px-4 py-5 md:flex-row md:px-8">
         <div className="flex items-center gap-2">
-          <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${open ? "animate-ping bg-emerald-500" : "bg-red-500"}`} />
-          <span className="text-[11px] font-black uppercase tracking-wide text-slate-500">
+          <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${open ? "animate-ping bg-emerald-400" : "bg-red-500"}`} />
+          <span className="text-[11px] font-black uppercase tracking-wide text-muted">
             {open ? "Aberto agora — entregando gelado" : "Fechado no momento"}
           </span>
         </div>

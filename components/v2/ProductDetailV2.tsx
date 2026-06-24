@@ -55,7 +55,7 @@ export default function ProductDetailV2({
         <button
           onClick={onClose}
           aria-label="Fechar detalhes"
-          className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-base text-slate-700 shadow-md backdrop-blur transition hover:bg-white active:scale-90"
+          className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-foreground/20 text-base text-white shadow-md backdrop-blur transition hover:bg-foreground/30 active:scale-90"
         >
           <X className="h-5 w-5" />
         </button>
@@ -74,7 +74,7 @@ export default function ProductDetailV2({
         </div>
 
         <div className="px-5 pt-5">
-          <h2 className="font-display text-2xl font-black leading-tight tracking-tight text-slate-800">
+          <h2 className="font-display text-2xl font-black leading-tight tracking-tight text-foreground">
             {product.name}
           </h2>
 
@@ -84,28 +84,28 @@ export default function ProductDetailV2({
               : "Produto selecionado do Malte & Tabaco. Entrega rápida na sua região."}
           </p>
 
-          <div className="mt-6 flex items-end justify-between border-t border-orange-100 pt-5">
+          <div className="mt-6 flex items-end justify-between border-t border-border pt-5">
             <div className="flex flex-col">
-              <span className="text-[10px] font-bold uppercase leading-none text-slate-400">Preço</span>
+              <span className="text-[10px] font-bold uppercase leading-none text-muted">Preço</span>
               <span className={`mt-1 text-2xl font-black ${theme.text}`}>{formatPrice(product.price)}</span>
             </div>
 
             {quantityInCart > 0 ? (
-              <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-slate-100 p-1.5">
+              <div className="flex items-center gap-3 rounded-full border border-border bg-background p-1.5">
                 <button
                   onClick={() => onRemoveOne(product)}
                   aria-label={`Remover ${product.name}`}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-slate-700 shadow-sm transition-transform active:scale-90 hover:bg-slate-50"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-card text-foreground shadow-sm transition-transform active:scale-90 hover:bg-border"
                 >
                   <Minus className="h-4 w-4" />
                 </button>
-                <span className="min-w-[20px] text-center text-base font-extrabold text-slate-800">
+                <span className="min-w-[20px] text-center text-base font-extrabold text-foreground">
                   {quantityInCart}
                 </span>
                 <button
                   onClick={() => onAdd(product)}
                   aria-label={`Adicionar ${product.name}`}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-slate-700 shadow-sm transition-transform active:scale-90 hover:bg-slate-50"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-card text-foreground shadow-sm transition-transform active:scale-90 hover:bg-border"
                 >
                   <Plus className="h-4 w-4" />
                 </button>

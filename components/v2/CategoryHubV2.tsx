@@ -22,7 +22,7 @@ const HUB_CARDS: HubCard[] = [
     badge: "Artesanal",
     Icon: FaBeerMugEmpty,
     colorClass: "bg-amber-700 shadow-amber-900/30 hover:bg-amber-800",
-    activeRing: "ring-4 ring-amber-600 ring-offset-4 ring-offset-[#faf3eb]",
+    activeRing: "ring-4 ring-amber-600 ring-offset-4 ring-offset-[#18120a]",
     textColor: "text-amber-100",
     rotate: "rotate-12 group-hover:rotate-0",
   },
@@ -33,7 +33,7 @@ const HUB_CARDS: HubCard[] = [
     badge: "Premium",
     Icon: FaWineBottle,
     colorClass: "bg-stone-800 shadow-stone-900/40 hover:bg-stone-900",
-    activeRing: "ring-4 ring-stone-700 ring-offset-4 ring-offset-[#faf3eb]",
+    activeRing: "ring-4 ring-stone-700 ring-offset-4 ring-offset-[#18120a]",
     textColor: "text-stone-200",
     rotate: "-rotate-12 group-hover:rotate-0",
   },
@@ -44,7 +44,7 @@ const HUB_CARDS: HubCard[] = [
     badge: "Seleção",
     Icon: FaSmoking,
     colorClass: "bg-[#b8541d] shadow-[#8c3a10]/40 hover:bg-[#8c3a10]",
-    activeRing: "ring-4 ring-[#b8541d] ring-offset-4 ring-offset-[#faf3eb]",
+    activeRing: "ring-4 ring-[#b8541d] ring-offset-4 ring-offset-[#18120a]",
     textColor: "text-orange-100",
     rotate: "rotate-3 group-hover:-rotate-3",
   },
@@ -55,7 +55,7 @@ const HUB_CARDS: HubCard[] = [
     badge: "Festa",
     Icon: FaGift,
     colorClass: "bg-red-800 shadow-red-900/30 hover:bg-red-900",
-    activeRing: "ring-4 ring-red-700 ring-offset-4 ring-offset-[#faf3eb]",
+    activeRing: "ring-4 ring-red-700 ring-offset-4 ring-offset-[#18120a]",
     textColor: "text-red-100",
     rotate: "-rotate-6 group-hover:rotate-0",
   },
@@ -74,7 +74,7 @@ export default function CategoryHubV2({
   return (
     <div className="px-4 py-6 md:px-8">
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400">Nossos Departamentos</h2>
+        <h2 className="text-sm font-bold uppercase tracking-widest text-muted">Nossos Departamentos</h2>
         {selectedCategory && (
           <button
             onClick={() => onSelectCategory(null)}
@@ -118,7 +118,7 @@ export default function CategoryHubV2({
               </div>
 
               {isActive && (
-                <div className="absolute bottom-6 right-6 flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-xs font-bold text-slate-900 shadow-lg">
+                <div className="absolute bottom-6 right-6 flex items-center gap-1 rounded-full bg-foreground/90 px-2.5 py-1 text-xs font-bold text-background shadow-lg">
                   <span className="h-2 w-2 animate-ping rounded-full bg-green-500" />
                   ATIVADO
                 </div>

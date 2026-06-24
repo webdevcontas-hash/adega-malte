@@ -94,7 +94,7 @@ export default function NarguilhBuilder({
         </div>
 
         {/* Step tabs */}
-        <div className="flex border-b border-border bg-white">
+        <div className="flex border-b border-border bg-card">
           {STEPS.map((s, index) => (
             <button
               key={s.key}
@@ -129,7 +129,7 @@ export default function NarguilhBuilder({
                     className={`w-full rounded-xl border p-3 text-left transition ${
                       isSelected
                         ? "border-orange-400 bg-orange-50"
-                        : "border-border bg-white hover:border-orange-200 hover:bg-orange-50/50"
+                        : "border-border bg-card hover:border-accent/40 hover:bg-accent-light"
                     }`}
                   >
                     <div className="flex items-center justify-between">
@@ -154,7 +154,7 @@ export default function NarguilhBuilder({
         </div>
 
         {/* Footer navigation */}
-        <div className="flex items-center justify-between border-t border-border p-4 bg-white">
+        <div className="flex items-center justify-between border-t border-border p-4 bg-card">
           <button
             onClick={() => setStep((s) => Math.max(0, s - 1))}
             disabled={step === 0}

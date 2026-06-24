@@ -34,7 +34,7 @@ export default function ProductCardV2({
       role="button"
       tabIndex={0}
       aria-label={`Ver detalhes de ${product.name}`}
-      className="group flex h-full cursor-pointer flex-col justify-between rounded-2xl border border-orange-100 bg-white p-4 shadow-sm transition-all duration-300 hover:border-orange-200 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
+      className="group flex h-full cursor-pointer flex-col justify-between rounded-2xl border border-border bg-card p-4 shadow-sm shadow-black/20 transition-all duration-300 hover:border-accent/50 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
     >
       <div>
         <div className={`relative mb-3.5 flex h-36 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br ${theme.gradient} transition-transform duration-300 group-hover:scale-[1.02]`}>
@@ -48,40 +48,40 @@ export default function ProductCardV2({
           </span>
         </div>
 
-        <h3 className="line-clamp-1 font-bold leading-snug text-slate-800 transition-colors group-hover:text-orange-600">
+        <h3 className="line-clamp-1 font-bold leading-snug text-foreground transition-colors group-hover:text-accent">
           {product.name}
         </h3>
         {product.description && (
-          <p className="mt-1 line-clamp-2 min-h-[2rem] text-xs text-slate-400">{product.description}</p>
+          <p className="mt-1 line-clamp-2 min-h-[2rem] text-xs text-muted">{product.description}</p>
         )}
       </div>
 
       <div className="mt-4 flex items-center justify-between">
         <div className="flex flex-col">
-          <span className="text-[10px] font-bold uppercase leading-none text-slate-400">Preço</span>
+          <span className="text-[10px] font-bold uppercase leading-none text-muted">Preço</span>
           <span className={`mt-0.5 text-lg font-black ${theme.text}`}>{formatPrice(product.price)}</span>
         </div>
 
         {quantityInCart > 0 ? (
-          <div className="flex items-center gap-2.5 rounded-full border border-slate-200 bg-slate-100 p-1">
+          <div className="flex items-center gap-2.5 rounded-full border border-border bg-background p-1">
             <button
               onClick={(event) => {
                 event.stopPropagation();
                 onRemoveOne(product);
               }}
               aria-label={`Remover ${product.name}`}
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-slate-700 shadow-sm transition-transform active:scale-90 hover:bg-slate-50 md:h-7 md:w-7"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-card text-foreground shadow-sm transition-transform active:scale-90 hover:bg-border md:h-7 md:w-7"
             >
               <Minus className="h-3.5 w-3.5" />
             </button>
-            <span className="min-w-[12px] px-1 text-center text-sm font-extrabold text-slate-800">{quantityInCart}</span>
+            <span className="min-w-[12px] px-1 text-center text-sm font-extrabold text-foreground">{quantityInCart}</span>
             <button
               onClick={(event) => {
                 event.stopPropagation();
                 onAdd(product);
               }}
               aria-label={`Adicionar ${product.name}`}
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-slate-700 shadow-sm transition-transform active:scale-90 hover:bg-slate-50 md:h-7 md:w-7"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-card text-foreground shadow-sm transition-transform active:scale-90 hover:bg-border md:h-7 md:w-7"
             >
               <Plus className="h-3.5 w-3.5" />
             </button>

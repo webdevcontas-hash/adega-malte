@@ -35,25 +35,25 @@ export default function KitSection({ onAddKit }: { onAddKit: (items: CartItem[])
 
   return (
     <section className="mx-auto max-w-7xl px-4 pb-4 md:px-8">
-      <h3 className="font-display text-xl font-black uppercase italic tracking-tight text-slate-800 underline decoration-orange-400 underline-offset-4">
+      <h3 className="font-display text-xl font-black uppercase italic tracking-tight text-foreground underline decoration-accent underline-offset-4">
         Kits para a Ocasião
       </h3>
-      <p className="mt-1 text-xs text-slate-400">Tudo de uma vez, sem esquecer nada.</p>
+      <p className="mt-1 text-xs text-muted">Tudo de uma vez, sem esquecer nada.</p>
 
       <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {kits.map((kit) => (
           <div
             key={kit.id}
-            className="flex flex-col justify-between rounded-2xl border border-orange-100 bg-white p-4 shadow-sm"
+            className="flex flex-col justify-between rounded-2xl border border-border bg-card p-4 shadow-sm shadow-black/20"
           >
             <div>
               <div className="text-4xl">{kit.emoji}</div>
-              <h4 className="mt-2 font-bold text-slate-800">{kit.name}</h4>
-              {kit.description && <p className="mt-1 text-xs text-slate-400">{kit.description}</p>}
+              <h4 className="mt-2 font-bold text-foreground">{kit.name}</h4>
+              {kit.description && <p className="mt-1 text-xs text-muted">{kit.description}</p>}
               <ul className="mt-2 space-y-0.5">
                 {kit.items.map((item) => (
-                  <li key={item.productId} className="flex items-center gap-1 text-xs text-slate-500">
-                    <span className="font-semibold text-slate-700">{item.quantity}×</span>
+                  <li key={item.productId} className="flex items-center gap-1 text-xs text-muted">
+                    <span className="font-semibold text-foreground">{item.quantity}×</span>
                     <span className="truncate">{item.name.split("—")[0].trim()}</span>
                   </li>
                 ))}
@@ -61,7 +61,7 @@ export default function KitSection({ onAddKit }: { onAddKit: (items: CartItem[])
             </div>
 
             <div className="mt-4 flex items-center justify-between">
-              <span className="text-base font-black text-orange-600">{formatPrice(kit.total)}</span>
+              <span className="text-base font-black text-accent">{formatPrice(kit.total)}</span>
               <button
                 onClick={() => handleAdd(kit)}
                 className={`rounded-lg px-3 py-2 text-xs font-bold transition ${
