@@ -1,10 +1,10 @@
 # Adega do Japa V2 — Progresso do Desenvolvimento
 
-> Última atualização: 23/06/2026 22:30 · DESKTOP-UH2I1U9
+> Última atualização: 23/06/2026 22:30 · Notebook Renan
 
 ---
 
-# SESSÃO — 23/06/2026 22:30 · DESKTOP-UH2I1U9
+# SESSÃO — 23/06/2026 22:30 · Notebook Renan
 
 ## O que foi feito
 
@@ -38,4 +38,4 @@
 
 | Sessão | Data | Máquina | Resumo |
 |--------|------|---------|--------|
-| 1 | 23/06/2026 | DESKTOP-UH2I1U9 | Criação do projeto V2 separado (tema laranja) a partir da V1 |
+| 1 | 23/06/2026 | Notebook Renan | Criação do projeto V2 separado (tema laranja) a partir da V1 |

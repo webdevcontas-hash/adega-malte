@@ -1,6 +1,6 @@
 # Adega do Japa V2 — Contexto para IA
 
-> Atualizado em: 23/06/2026 22:30 · DESKTOP-UH2I1U9 | Leia este arquivo antes de qualquer alteração no projeto.
+> Atualizado em: 23/06/2026 22:30 · Notebook Renan | Leia este arquivo antes de qualquer alteração no projeto.
 
 ---
 

@@ -1,6 +1,6 @@
-# HANDOFF — DESKTOP-UH2I1U9 → próximo agente
+# HANDOFF — Notebook Renan → próximo agente
 
-> Atualizado: 23/06/2026 22:30 · DESKTOP-UH2I1U9
+> Atualizado: 23/06/2026 22:30 · Notebook Renan
 > **Regra:** quem lê este arquivo apaga o conteúdo anterior e escreve a sua seção ao terminar.
 
 ---
