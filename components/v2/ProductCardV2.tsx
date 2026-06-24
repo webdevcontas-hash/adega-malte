@@ -16,7 +16,7 @@ export default function ProductCardV2({
 }: {
   product: ProductModel;
   quantityInCart: number;
-  onAdd: (product: ProductModel) => void;
+  onAdd: (product: ProductModel, quantity?: number) => void;
   onRemoveOne: (product: ProductModel) => void;
   onOpenDetails: (product: ProductModel) => void;
 }) {

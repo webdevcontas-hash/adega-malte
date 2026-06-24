@@ -19,7 +19,7 @@ export default function ProductDetailV2({
 }: {
   product: ProductModel;
   quantityInCart: number;
-  onAdd: (product: ProductModel) => void;
+  onAdd: (product: ProductModel, quantity?: number) => void;
   onRemoveOne: (product: ProductModel) => void;
   onClose: () => void;
 }) {

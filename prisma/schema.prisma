@@ -74,6 +74,12 @@ model Kit {
   active      Boolean @default(true)
 }
 
+model DeliveryZone {
+  id           Int    @id @default(autoincrement())
+  neighborhood String @unique
+  fee          Float
+}
+
 model OrderItem {
   id        String  @id @default(cuid())
   orderId   String

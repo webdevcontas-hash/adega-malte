@@ -55,13 +55,30 @@ async function main() {
   const created = await prisma.product.findMany({ select: { id: true, name: true } });
   const find = (keyword: string) => created.find((p) => p.name.includes(keyword))?.id;
 
-  // Setting padrão
-  await prisma.setting.upsert({
-    where: { key: "deliveryTime" },
-    create: { key: "deliveryTime", value: "30-45 min" },
-    update: {},
+  // Settings padrão
+  const defaultSettings = [
+    { key: "deliveryTime", value: "30-45 min" },
+    { key: "businessHoursOpen", value: "18" },
+    { key: "businessHoursClose", value: "3" },
+    { key: "whatsappNumber", value: "" },
+    { key: "deliveryDefaultFee", value: "12" },
+  ];
+  for (const s of defaultSettings) {
+    await prisma.setting.upsert({ where: { key: s.key }, create: s, update: {} });
+  }
+  console.log("Settings configurados.");
+
+  // Zonas de entrega padrão
+  await prisma.deliveryZone.deleteMany();
+  await prisma.deliveryZone.createMany({
+    data: [
+      { neighborhood: "Centro", fee: 5 },
+      { neighborhood: "Jardim Europa", fee: 7 },
+      { neighborhood: "Vila Nova", fee: 8 },
+      { neighborhood: "Boa Vista", fee: 10 },
+    ],
   });
-  console.log("Setting 'deliveryTime' configurado.");
+  console.log("Zonas de entrega configuradas.");
 
   // Cupons de exemplo
   await prisma.coupon.deleteMany();

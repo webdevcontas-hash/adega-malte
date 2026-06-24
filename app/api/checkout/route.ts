@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { getPaymentClient } from "@/lib/mercadopago";
-import { isStoreOpen } from "@/lib/business-hours";
-import { getDeliveryFee } from "@/lib/delivery";
+import { isStoreOpenAsync } from "@/lib/business-hours";
+import { getDeliveryFeeAsync } from "@/lib/delivery";
 
 const checkoutSchema = z.object({
   customerName: z.string().trim().min(2).max(120),
@@ -25,7 +25,7 @@ const checkoutSchema = z.object({
 });
 
 export async function POST(request: Request) {
-  if (!isStoreOpen()) {
+  if (!(await isStoreOpenAsync())) {
     return NextResponse.json({ error: "Fora do horário de funcionamento." }, { status: 409 });
   }
 
@@ -51,7 +51,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Um ou mais produtos não estão disponíveis." }, { status: 400 });
   }
 
-  const deliveryFee = getDeliveryFee(neighborhood);
+  const deliveryFee = await getDeliveryFeeAsync(neighborhood);
   const orderItems = items.map((item) => {
     const product = products.find((candidate) => candidate.id === item.productId)!;
     return { productId: product.id, quantity: item.quantity, price: product.price };

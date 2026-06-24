@@ -5,7 +5,13 @@ import { isAuthenticated } from "@/lib/dashboard-auth";
 export async function GET() {
   const settings = await prisma.setting.findMany();
   const map = Object.fromEntries(settings.map((s) => [s.key, s.value]));
-  return NextResponse.json({ deliveryTime: map.deliveryTime ?? "" });
+  return NextResponse.json({
+    deliveryTime: map.deliveryTime ?? "",
+    businessHoursOpen: map.businessHoursOpen ?? "18",
+    businessHoursClose: map.businessHoursClose ?? "3",
+    whatsappNumber: map.whatsappNumber ?? "",
+    deliveryDefaultFee: map.deliveryDefaultFee ?? "12",
+  });
 }
 
 export async function PATCH(request: Request) {
