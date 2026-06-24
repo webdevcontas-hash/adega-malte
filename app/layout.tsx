@@ -21,13 +21,12 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Adega do Japa — Delivery de Bebidas e Tabacaria",
-  description: "Peça bebidas e itens de tabacaria com entrega rápida e pagamento via Pix.",
+  title: "Malte & Tabaco — Delivery de Bebidas e Tabacaria",
+  description: "Peça cervejas, destilados e itens de tabacaria com entrega rápida e pagamento via Pix.",
 };
 
-// viewportFit: cover habilita as env(safe-area-inset-*) em iPhones com notch/home indicator.
 export const viewport: Viewport = {
-  themeColor: "#f97316",
+  themeColor: "#b8541d",
   viewportFit: "cover",
 };
 

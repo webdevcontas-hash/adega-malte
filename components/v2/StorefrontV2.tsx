@@ -209,9 +209,9 @@ function StorefrontV2Content({ products }: { products: ProductModel[] }) {
             {open ? "Aberto agora — entregando gelado" : "Fechado no momento"}
           </span>
         </div>
-        <div className="flex items-center gap-4 rounded-full border border-orange-100 bg-orange-50 px-5 py-2.5 text-center shadow-inner">
-          <p className="text-xs font-extrabold text-orange-700">🚚 Entrega rápida e gelada na sua região!</p>
-          <div className="flex h-6 w-6 select-none items-center justify-center rounded-full bg-orange-200 text-xs">🚀</div>
+        <div className="flex items-center gap-4 rounded-full border border-[#e8d4bb] bg-[#f5e4d0] px-5 py-2.5 text-center shadow-inner">
+          <p className="text-xs font-extrabold text-[#8c3a10]">🚚 Entrega rápida na sua região!</p>
+          <div className="flex h-6 w-6 select-none items-center justify-center rounded-full bg-[#e8d4bb] text-xs">🔥</div>
         </div>
       </footer>
 

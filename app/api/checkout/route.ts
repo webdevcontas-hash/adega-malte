@@ -103,7 +103,7 @@ export async function POST(request: Request) {
     const payment = await getPaymentClient().create({
       body: {
         transaction_amount: total,
-        description: `Pedido Adega do Japa #${order.id.slice(-6).toUpperCase()}`,
+        description: `Pedido Malte & Tabaco #${order.id.slice(-6).toUpperCase()}`,
         payment_method_id: "pix",
         external_reference: order.id,
         notification_url: process.env.NEXT_PUBLIC_BASE_URL
@@ -111,7 +111,7 @@ export async function POST(request: Request) {
           : undefined,
         date_of_expiration: new Date(Date.now() + 10 * 60 * 1000).toISOString(),
         payer: {
-          email: `pedido-${order.id}@adegadojapa.com.br`,
+          email: `pedido-${order.id}@maltetabaco.com.br`,
           first_name: customerName,
         },
       },

@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Tema principal — laranja/slate / Plus Jakarta Sans (referência "delivery-japa").
-   Os tokens semânticos abaixo são consumidos por toda a aplicação (loja,
-   modais e dashboard), garantindo identidade visual única.
+   Tema Malte & Tabaco — terracota / carvão / madeira.
+   Paleta extraída da identidade visual da loja: interior terracota quente,
+   estrutura em carvão escuro, prateleiras em madeira natural.
 --------------------------------------------------------------------------- */
 :root {
-  --background: #fff7ed;
-  --foreground: #1e293b;
+  --background: #faf3eb;   /* creme quente — fachada iluminada */
+  --foreground: #1c1208;   /* carvão escuro — cor da porta de metal */
   --card: #ffffff;
-  --border: #ffedd5;
-  --muted: #94a3b8;
-  --accent: #f97316;
-  --accent-dark: #ea580c;
-  --accent-light: #ffedd5;
+  --border: #e8d4bb;       /* bege quente — madeira clara */
+  --muted: #8b7355;        /* marrom médio — madeira natural */
+  --accent: #b8541d;       /* terracota — cor dominante do interior */
+  --accent-dark: #8c3a10;  /* terracota escura */
+  --accent-light: #f5e4d0; /* terracota clarinha */
 }
 
 @theme inline {
@@ -40,8 +40,6 @@ body {
   font-family: var(--font-grotesk), sans-serif;
 }
 
-/* Respeita usuários que pedem menos movimento (acessibilidade + bateria no mobile).
-   Desliga as animações infinitas (pulse/ping/bounce) e transições longas. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

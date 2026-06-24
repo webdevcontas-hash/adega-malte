@@ -81,7 +81,7 @@ export default function ProductDetailV2({
           <p className="mt-3 text-sm leading-relaxed text-slate-500">
             {product.description?.trim()
               ? product.description
-              : "Produto selecionado da Adega do Japa. Entrega rápida e gelada na sua região."}
+              : "Produto selecionado do Malte & Tabaco. Entrega rápida na sua região."}
           </p>
 
           <div className="mt-6 flex items-end justify-between border-t border-orange-100 pt-5">
