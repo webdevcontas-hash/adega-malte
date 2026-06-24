@@ -43,6 +43,17 @@ Sessão muito grande, tudo commitado e no GitHub (`main`). Commits do dia:
 7. **Horário real**: ajustar abertura/fechamento no painel Admin → Configurações.
 8. **Float → centavos** (migração de preços para Int): tarefa dedicada com teste de Pix real.
 
+## 🎯 Próxima sessão — melhorias planejadas (ver ROADMAP no PROGRESSO.md)
+
+Análise de produto feita em 24/06 tarde. **Começar por M2 → M1** (maior retorno):
+
+1. **M2 — Relatório de vendas no admin** ⭐ ponto de partida (não precisa de credencial externa).
+   Nova aba `/admin`: total vendido, mais vendidos, ticket médio, pedidos por horário. Dados já estão em `Order`+`OrderItem`.
+2. **M1 — WhatsApp real** — `lib/whatsapp.ts` só loga; avisar o dono do pedido pago.
+3. M3 — Controle de estoque (qtd no `Product`, decrementa no pago).
+4. M4 — Fotos reais (campo `image` já existe, falta upload no admin).
+5. M5 — Fidelidade/cashback · M6 — Avaliação pós-entrega · M7 — Float→Int · M8 — Rate limiting.
+
 ## Como rodar na nova máquina
 
 ```bash

@@ -82,16 +82,38 @@ Sessão longa, diversas frentes — todas commitadas e no GitHub (`main`):
 
 ## ROADMAP
 
+### Infra / pré-produção
 | # | Item | Prioridade | Estado |
 |---|------|------------|--------|
 | 1 | Mercado Pago real + teste de Pix | 🔴 Alta | Pendente |
 | 2 | Deploy (VPS/Vercel) | 🔴 Alta | Pendente |
 | 3 | Trocar senha do dashboard | 🔴 Alta | Pendente |
 | 4 | Google OAuth (ativa login) | 🟡 Média | Pendente |
-| 5 | WhatsApp real | 🟡 Média | Pendente |
-| 6 | Ajustar bairros/taxas reais no admin | 🟡 Média | Pendente |
-| 7 | Fotos reais dos produtos | 🟡 Média | Pendente |
-| 8 | Float→Int (centavos) | 🟢 Baixa | Pendente |
+| 5 | Ajustar bairros/taxas reais no admin | 🟡 Média | Pendente |
+
+### Melhorias de produto (próxima sessão — análise 24/06 tarde)
+
+**Alto impacto — operação e conversão:**
+| # | Item | Notas de implementação |
+|---|------|------------------------|
+| M1 | **Notificação WhatsApp real** | `lib/whatsapp.ts` hoje só loga no console. Avisar o dono na hora do pedido pago. Opções: link `wa.me` automático, Evolution API ou whatsapp-web.js. É a pendência mais crítica pra operação real. |
+| M2 | **Relatório de vendas no admin** | Nova aba no `/admin`: total vendido dia/semana, produtos mais vendidos, ticket médio, pedidos por horário. Dados já existem em `Order` + `OrderItem` — só agregar e exibir. NÃO depende de credencial externa → bom ponto de partida. |
+| M3 | **Controle de estoque** | Hoje produto é só ativo/inativo. Adicionar campo de quantidade no `Product` que decrementa no pedido pago. Evita vender o que acabou (ex.: última garrafa de um whisky). |
+
+**Médio impacto — confiança e recompra:**
+| # | Item | Notas de implementação |
+|---|------|------------------------|
+| M4 | **Fotos reais dos produtos** | Schema já tem campo `image`. Adicionar upload no admin. Foto converte mais que ícone, sobretudo em destilados premium. |
+| M5 | **Fidelidade / cashback** | Ex.: "a cada 10 pedidos, 1 frete grátis" ou cashback. A conta do cliente (`CustomerProvider` + Order por phone/email) já é o gancho. Sustenta recompra. |
+| M6 | **Avaliação pós-entrega** | Após `deliveryStatus = DELIVERED`, pedir nota. Gera prova social e feedback pro dono. |
+
+**Técnico — antes de produção:**
+| # | Item | Notas de implementação |
+|---|------|------------------------|
+| M7 | **Float → centavos (Int)** | Evita bug de arredondamento em dinheiro. Migração com cuidado + reteste de Pix. |
+| M8 | **Rate limiting no checkout** | Evitar spam de pedidos e abuso de cupom. |
+
+> **Recomendação para retomar:** começar por **M2 (relatório de vendas)** — não depende de credencial externa, dá pra ver funcionando na hora. Depois **M1 (WhatsApp)**. Esses dois transformam o app de demo em ferramenta de uso diário do dono.
 
 ---
 
