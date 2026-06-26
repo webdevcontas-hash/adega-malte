@@ -1,7 +1,11 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { FaPlus, FaTrash, FaPen, FaCheck, FaXmark, FaToggleOn, FaToggleOff } from "react-icons/fa6";
+import type { IconType } from "react-icons";
+import {
+  FaPlus, FaTrash, FaPen, FaCheck, FaXmark, FaToggleOn, FaToggleOff,
+  FaChartSimple, FaBox, FaGift, FaTruck, FaGear, FaClock, FaWhatsapp,
+} from "react-icons/fa6";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -427,7 +431,7 @@ function ConfigTab() {
       <h2 className="text-lg font-bold text-foreground">Configurações da Loja</h2>
 
       <section className="rounded-xl border border-border bg-card p-5 space-y-4">
-        <h3 className="font-bold text-foreground">⏰ Horário de Funcionamento</h3>
+        <h3 className="flex items-center gap-2 font-bold text-foreground"><FaClock className="text-accent" /> Horário de Funcionamento</h3>
         <div className="grid grid-cols-2 gap-3">
           <div>
             <label className="text-xs font-bold uppercase text-muted">Abre às (hora)</label>
@@ -449,13 +453,13 @@ function ConfigTab() {
       </section>
 
       <section className="rounded-xl border border-border bg-card p-5 space-y-4">
-        <h3 className="font-bold text-foreground">🚚 Entrega</h3>
+        <h3 className="flex items-center gap-2 font-bold text-foreground"><FaTruck className="text-accent" /> Entrega</h3>
         <SettingRow label="Tempo estimado de entrega" hint='Exibido no carrinho. Ex: "30-45 min"' settingKey="deliveryTime" placeholder="30-45 min" />
         <SettingRow label="Taxa padrão (bairros não cadastrados)" hint="Em reais" settingKey="deliveryDefaultFee" type="number" placeholder="12" />
       </section>
 
       <section className="rounded-xl border border-border bg-card p-5 space-y-4">
-        <h3 className="font-bold text-foreground">💬 WhatsApp</h3>
+        <h3 className="flex items-center gap-2 font-bold text-foreground"><FaWhatsapp className="text-accent" /> WhatsApp</h3>
         <SettingRow label="Número da loja" hint='Formato: 55DDD+número, sem espaços. Ex: "5511999999999"' settingKey="whatsappNumber" placeholder="5511999999999" />
       </section>
     </div>
@@ -610,12 +614,12 @@ function RelatoriosTab() {
 // ─── Main Panel ───────────────────────────────────────────────────────────────
 
 type Tab = "relatorios" | "produtos" | "kits" | "taxas" | "configuracoes";
-const TABS: { id: Tab; label: string; icon: string }[] = [
-  { id: "relatorios", label: "Relatórios", icon: "📊" },
-  { id: "produtos", label: "Produtos", icon: "📦" },
-  { id: "kits", label: "Kits", icon: "🎁" },
-  { id: "taxas", label: "Taxas de Entrega", icon: "🚚" },
-  { id: "configuracoes", label: "Configurações", icon: "⚙️" },
+const TABS: { id: Tab; label: string; Icon: IconType }[] = [
+  { id: "relatorios", label: "Relatórios", Icon: FaChartSimple },
+  { id: "produtos", label: "Produtos", Icon: FaBox },
+  { id: "kits", label: "Kits", Icon: FaGift },
+  { id: "taxas", label: "Taxas de Entrega", Icon: FaTruck },
+  { id: "configuracoes", label: "Configurações", Icon: FaGear },
 ];
 
 export default function AdminPanel() {
@@ -636,8 +640,8 @@ export default function AdminPanel() {
           <div className="mt-3 flex gap-1 overflow-x-auto pb-1">
             {TABS.map((t) => (
               <button key={t.id} onClick={() => setTab(t.id)}
-                className={`shrink-0 rounded-lg px-3 py-1.5 text-xs font-bold transition ${tab === t.id ? "bg-accent text-white" : "text-muted hover:bg-accent-light hover:text-foreground"}`}>
-                {t.icon} {t.label}
+                className={`flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition ${tab === t.id ? "bg-accent text-white" : "text-muted hover:bg-accent-light hover:text-foreground"}`}>
+                <t.Icon /> {t.label}
               </button>
             ))}
           </div>

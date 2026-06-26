@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { DeliveryStatus } from "@/lib/types";
+import type { IconType } from "react-icons";
+import { FaBox, FaGear, FaTicket, FaCheck } from "react-icons/fa6";
 
 type OrderItem = { id: string; quantity: number; price: number; product: { name: string } };
 type Order = {
@@ -42,6 +44,12 @@ type Coupon = {
   usedCount: number;
   active: boolean;
 };
+
+const DASHBOARD_TABS: { id: "orders" | "settings" | "coupons"; label: string; Icon: IconType }[] = [
+  { id: "orders", label: "Pedidos", Icon: FaBox },
+  { id: "settings", label: "Configurações", Icon: FaGear },
+  { id: "coupons", label: "Cupons", Icon: FaTicket },
+];
 
 const DELIVERY_STEPS: { key: DeliveryStatus; label: string }[] = [
   { key: "WAITING", label: "Aguardando" },
@@ -214,15 +222,15 @@ export default function DashboardPanel() {
       <div className="sticky top-0 z-10 border-b border-border bg-card px-4 py-3 shadow-sm">
         <h1 className="text-xl font-extrabold tracking-tight">Painel de Pedidos</h1>
         <div className="mt-2 flex gap-1">
-          {(["orders", "settings", "coupons"] as const).map((tab) => (
+          {DASHBOARD_TABS.map((t) => (
             <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`rounded-lg px-3 py-1.5 text-xs font-bold transition ${
-                activeTab === tab ? "bg-accent text-white" : "text-muted hover:bg-accent-light"
+              key={t.id}
+              onClick={() => setActiveTab(t.id)}
+              className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition ${
+                activeTab === t.id ? "bg-accent text-white" : "text-muted hover:bg-accent-light"
               }`}
             >
-              {tab === "orders" ? "📦 Pedidos" : tab === "settings" ? "⚙️ Configurações" : "🎟️ Cupons"}
+              <t.Icon /> {t.label}
             </button>
           ))}
         </div>
@@ -356,7 +364,7 @@ export default function DashboardPanel() {
                   disabled={savingTime}
                   className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-accent-dark disabled:opacity-50"
                 >
-                  {timeSaved ? "✓ Salvo" : savingTime ? "..." : "Salvar"}
+                  {timeSaved ? <FaCheck className="inline" /> : savingTime ? "..." : "Salvar"}
                 </button>
               </div>
             </div>
