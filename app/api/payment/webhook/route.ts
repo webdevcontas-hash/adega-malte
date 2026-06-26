@@ -3,6 +3,7 @@ import { InvalidWebhookSignatureError, WebhookSignatureValidator } from "mercado
 import { prisma } from "@/lib/prisma";
 import { getPaymentClient } from "@/lib/mercadopago";
 import { notifyOrderPaid } from "@/lib/whatsapp";
+import { decrementStock } from "@/lib/stock";
 
 export async function POST(request: NextRequest) {
   const dataId = request.nextUrl.searchParams.get("data.id");
@@ -42,6 +43,7 @@ export async function POST(request: NextRequest) {
 
       if (order && order.status !== "PAID") {
         await prisma.order.update({ where: { id: order.id }, data: { status: "PAID" } });
+        await decrementStock(order.items.map((item) => ({ productId: item.productId, quantity: item.quantity })));
         await notifyOrderPaid(order);
       }
     }

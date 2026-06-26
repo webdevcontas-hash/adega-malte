@@ -53,6 +53,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Um ou mais produtos não estão disponíveis." }, { status: 400 });
   }
 
+  for (const item of items) {
+    const product = products.find((candidate) => candidate.id === item.productId)!;
+    if (product.stock != null && item.quantity > product.stock) {
+      return NextResponse.json({ error: `Estoque insuficiente de "${product.name}".` }, { status: 400 });
+    }
+  }
+
   const deliveryFee = await getDeliveryFeeAsync(neighborhood);
   const orderItems = items.map((item) => {
     const product = products.find((candidate) => candidate.id === item.productId)!;

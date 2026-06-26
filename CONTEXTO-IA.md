@@ -1,6 +1,6 @@
 # Malte & Tabaco — Contexto para IA
 
-> Atualizado em: 24/06/2026 15:23 · Renan Notebook Gordon (DELL)
+> Atualizado em: 26/06/2026 · sessão IA
 > Leia este arquivo antes de qualquer alteração no projeto.
 
 ---
@@ -89,6 +89,7 @@ adega-malte/
     ├── delivery.ts                 # Client-safe: getDeliveryFee() retorna DEFAULT apenas
     ├── delivery-db.ts              # Server-only: getDeliveryFeeAsync() lê DeliveryZone DB
     ├── dashboard-auth.ts           # HMAC cookie auth (isAuthenticated, createDashboardSession)
+    ├── stock.ts                    # decrementStock(items) — chamado ao confirmar venda (Pix pago / entrega concluída)
     ├── useCart.ts                  # Hook: cart state + addToCart + addManyToCart + reorder
     └── types.ts                    # CartItem, Kit, KitItem, DeliveryStatus, OrderStatus
 ```
@@ -98,11 +99,11 @@ adega-malte/
 ## Modelos Prisma
 
 ```
-Product       — id(cuid), name, price, category, description?, isAvailable, createdAt
+Product       — id(cuid), name, price, category, description?, isAvailable, stock?(null=ilimitado), createdAt
 Order         — id(cuid), customerName, phone, email?, address, neighborhood?, cep?,
-                deliveryFee, total, couponCode?, couponDiscount?, status(PENDING/PAID/DELIVERED),
-                deliveryStatus(WAITING/PREPARING/OUT_FOR_DELIVERY/DELIVERED), accepted, pixId?,
-                qrCode?, qrCodeBase64?, items(rel), createdAt, updatedAt
+                deliveryFee, total, couponCode?, couponDiscount?, paymentMethod(pix/card/cash), changeFor?,
+                status(PENDING/PAID/DELIVERED), deliveryStatus(WAITING/PREPARING/OUT_FOR_DELIVERY/DELIVERED),
+                accepted, pixId?, qrCode?, qrCodeBase64?, items(rel), createdAt, updatedAt
 OrderItem     — id(cuid), orderId(FK cascade), productId(FK), quantity, price
 Setting       — key(PK), value            ← horário, tempo entrega, WhatsApp, taxa padrão
 Coupon        — id(int), code(unique), type(percent/fixed), value, minOrder, maxUses?, usedCount, active
@@ -124,6 +125,7 @@ DeliveryZone  — id(int), neighborhood(unique), fee
 8. **Servidor recalcula tudo no checkout**: preços, total, taxa de entrega e cupom — nunca confiar em valores do client.
 9. **Inputs 16px no mobile**: `text-base md:text-sm` em todos os inputs do checkout (evita zoom iOS).
 10. **Sessões HMAC**: `dashboard-auth.ts` e `customer-auth.ts` gravam HMAC-SHA256 no cookie, nunca o segredo.
+11. **Estoque (`Product.stock`)**: `null` = ilimitado (não controlado), número = quantidade real. `decrementStock()` só roda uma vez por pedido — no webhook do Mercado Pago quando o Pix é aprovado (`status` PENDING→PAID), ou na rota de status quando `deliveryStatus` vira DELIVERED **e o pedido ainda não estava PAID/DELIVERED** (cobre pagamento na entrega, que só conta como venda no recebimento). Checkout valida estoque disponível antes de criar o pedido, mas não reserva — corrida entre dois checkouts simultâneos pode estourar por poucas unidades (aceitável no MVP).
 
 ---
 
@@ -160,4 +162,5 @@ Acessos: loja `/` · atendente `/dashboard` · admin `/admin` · senha: `adega12
 | Máquina | Responsável | Última sessão |
 |---------|-------------|---------------|
 | Renan Desktop | Renan | 23/06/2026 |
-| Renan Notebook Gordon (DELL) | Renan | 24/06/2026 |
+| Renan Notebook Gordon (DELL) | Renan | 24/06/2026, 25/06/2026 |
+| (sessão IA) | Renan | 26/06/2026 |

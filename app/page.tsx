@@ -8,7 +8,7 @@ export const revalidate = 60;
 
 export default async function Home() {
   const products = await prisma.product.findMany({
-    where: { isAvailable: true },
+    where: { isAvailable: true, OR: [{ stock: null }, { stock: { gt: 0 } }] },
     orderBy: { name: "asc" },
   });
 

@@ -10,6 +10,7 @@ const productSchema = z.object({
   category: z.enum(["Cervejas", "Destilados", "Tabacaria", "Combos/Gelo"]),
   description: z.string().trim().max(500).optional(),
   isAvailable: z.boolean().default(true),
+  stock: z.number().int().min(0).nullable().optional(),
 });
 
 export async function GET() {

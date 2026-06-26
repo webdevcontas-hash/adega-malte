@@ -10,6 +10,7 @@ const patchSchema = z.object({
   category: z.enum(["Cervejas", "Destilados", "Tabacaria", "Combos/Gelo"]).optional(),
   description: z.string().trim().max(500).nullable().optional(),
   isAvailable: z.boolean().optional(),
+  stock: z.number().int().min(0).nullable().optional(),
 });
 
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {

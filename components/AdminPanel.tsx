@@ -5,7 +5,7 @@ import { FaPlus, FaTrash, FaPen, FaCheck, FaXmark, FaToggleOn, FaToggleOff } fro
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
-type Product = { id: string; name: string; price: number; category: string; description: string | null; isAvailable: boolean };
+type Product = { id: string; name: string; price: number; category: string; description: string | null; isAvailable: boolean; stock: number | null };
 type KitItem = { productId: string; quantity: number };
 type Kit = { id: number; name: string; description: string | null; items: KitItem[]; active: boolean };
 type DeliveryZone = { id: number; neighborhood: string; fee: number };
@@ -47,7 +47,7 @@ function ProdutosTab() {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState<Product | null>(null);
   const [showNew, setShowNew] = useState(false);
-  const [form, setForm] = useState<{ name: string; price: string; category: typeof CATEGORIES[number]; description: string }>({ name: "", price: "", category: CATEGORIES[0], description: "" });
+  const [form, setForm] = useState<{ name: string; price: string; category: typeof CATEGORIES[number]; description: string; stock: string }>({ name: "", price: "", category: CATEGORIES[0], description: "", stock: "" });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
@@ -62,7 +62,7 @@ function ProdutosTab() {
 
   function openEdit(p: Product) {
     setEditing(p);
-    setForm({ name: p.name, price: String(p.price), category: p.category as typeof CATEGORIES[number], description: p.description ?? "" });
+    setForm({ name: p.name, price: String(p.price), category: p.category as typeof CATEGORIES[number], description: p.description ?? "", stock: p.stock == null ? "" : String(p.stock) });
     setShowNew(false);
     setError("");
   }
@@ -70,13 +70,13 @@ function ProdutosTab() {
   function openNew() {
     setShowNew(true);
     setEditing(null);
-    setForm({ name: "", price: "", category: CATEGORIES[0], description: "" });
+    setForm({ name: "", price: "", category: CATEGORIES[0], description: "", stock: "" });
     setError("");
   }
 
   async function save() {
     setSaving(true); setError("");
-    const body = { name: form.name, price: Number(form.price), category: form.category, description: form.description || null };
+    const body = { name: form.name, price: Number(form.price), category: form.category, description: form.description || null, stock: form.stock.trim() === "" ? null : Number(form.stock) };
     const url = editing ? `/api/admin/products/${editing.id}` : "/api/admin/products";
     const method = editing ? "PATCH" : "POST";
     const res = await fetch(url, { method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
@@ -122,6 +122,7 @@ function ProdutosTab() {
               </select>
             </label>
             <div className="sm:col-span-2"><Input label="Descrição (opcional)" value={form.description} onChange={(v) => setForm((f) => ({ ...f, description: v }))} /></div>
+            <Input label="Estoque (vazio = ilimitado)" type="number" min={0} value={form.stock} onChange={(v) => setForm((f) => ({ ...f, stock: v }))} placeholder="Ilimitado" />
           </div>
           {error && <p className="text-xs text-red-500">{error}</p>}
           <div className="flex gap-2">
@@ -143,6 +144,11 @@ function ProdutosTab() {
                   <p className="truncate text-sm font-semibold text-foreground">{p.name}</p>
                   <p className="text-xs text-muted">{fmt(p.price)}</p>
                 </div>
+                {p.stock != null && (
+                  <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold ${p.stock > 0 ? "bg-accent-light text-accent-dark" : "bg-red-100 text-red-700"}`}>
+                    {p.stock > 0 ? `Estoque: ${p.stock}` : "Esgotado"}
+                  </span>
+                )}
                 <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold ${p.isAvailable ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}>
                   {p.isAvailable ? "Ativo" : "Inativo"}
                 </span>

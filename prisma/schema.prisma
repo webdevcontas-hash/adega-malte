@@ -18,6 +18,7 @@ model Product {
   image       String?
   description String?
   isAvailable Boolean     @default(true)
+  stock       Int?        // null = estoque ilimitado (não controlado); decrementa na venda confirmada
   orderItems  OrderItem[]
   createdAt   DateTime    @default(now())
 }

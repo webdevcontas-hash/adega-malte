@@ -1,6 +1,20 @@
 # Malte & Tabaco — Progresso do Desenvolvimento
 
-> Última atualização: 24/06/2026 15:23 · Renan Notebook Gordon (DELL)
+> Última atualização: 26/06/2026 · sessão IA
+
+---
+
+## Sessão — 26/06/2026 · sessão IA
+
+### O que foi feito
+
+- **Docs corrigidos**: HANDOFF/PROGRESSO estavam um passo atrás do `git log` — M2 (relatório de vendas) e pagamento na entrega (dinheiro/cartão) já tinham sido implementados em 25/06 de manhã e não estavam documentados.
+- **M3 — Controle de estoque**: `Product.stock` (nullable = ilimitado), validação no checkout, decremento único por pedido (Pix pago ou entrega concluída), badge no admin, produto esgotado some da vitrine. Testado ponta a ponta localmente.
+- **WhatsApp real (M1)**: avaliado, decisão de provedor adiada para próxima sessão.
+
+### Pendências
+
+- Mesmas da sessão anterior (ver Roadmap) — Mercado Pago real, deploy, WhatsApp real, etc.
 
 ---
 
@@ -90,15 +104,16 @@ Sessão longa, diversas frentes — todas commitadas e no GitHub (`main`):
 | 3 | Trocar senha do dashboard | 🔴 Alta | Pendente |
 | 4 | Google OAuth (ativa login) | 🟡 Média | Pendente |
 | 5 | Ajustar bairros/taxas reais no admin | 🟡 Média | Pendente |
+| 6 | Pagamento na entrega (dinheiro/cartão) | — | ✅ Concluído (25/06) |
 
 ### Melhorias de produto (próxima sessão — análise 24/06 tarde)
 
 **Alto impacto — operação e conversão:**
-| # | Item | Notas de implementação |
-|---|------|------------------------|
-| M1 | **Notificação WhatsApp real** | `lib/whatsapp.ts` hoje só loga no console. Avisar o dono na hora do pedido pago. Opções: link `wa.me` automático, Evolution API ou whatsapp-web.js. É a pendência mais crítica pra operação real. |
-| M2 | **Relatório de vendas no admin** | Nova aba no `/admin`: total vendido dia/semana, produtos mais vendidos, ticket médio, pedidos por horário. Dados já existem em `Order` + `OrderItem` — só agregar e exibir. NÃO depende de credencial externa → bom ponto de partida. |
-| M3 | **Controle de estoque** | Hoje produto é só ativo/inativo. Adicionar campo de quantidade no `Product` que decrementa no pedido pago. Evita vender o que acabou (ex.: última garrafa de um whisky). |
+| # | Item | Estado | Notas de implementação |
+|---|------|--------|------------------------|
+| M1 | **Notificação WhatsApp real** | 🟡 Pendente (decisão de provedor adiada 26/06) | `lib/whatsapp.ts` hoje só loga no console. Avisar o dono na hora do pedido pago. Opções avaliadas: link `wa.me` automático, Evolution API, whatsapp-web.js ou API oficial Meta. É a pendência mais crítica pra operação real. |
+| M2 | **Relatório de vendas no admin** | ✅ Concluído (25/06) | Aba `/admin` → Relatórios: total vendido, ticket médio, mais vendidos, pedidos por horário, receita por dia. Filtro por período (hoje/7d/30d/tudo). |
+| M3 | **Controle de estoque** | ✅ Concluído (26/06) | `Product.stock` (null = ilimitado), decremento automático ao confirmar a venda (Pix pago ou entrega concluída), validação no checkout, badge no admin, produto esgotado some da vitrine. |
 
 **Médio impacto — confiança e recompra:**
 | # | Item | Notas de implementação |
@@ -113,7 +128,7 @@ Sessão longa, diversas frentes — todas commitadas e no GitHub (`main`):
 | M7 | **Float → centavos (Int)** | Evita bug de arredondamento em dinheiro. Migração com cuidado + reteste de Pix. |
 | M8 | **Rate limiting no checkout** | Evitar spam de pedidos e abuso de cupom. |
 
-> **Recomendação para retomar:** começar por **M2 (relatório de vendas)** — não depende de credencial externa, dá pra ver funcionando na hora. Depois **M1 (WhatsApp)**. Esses dois transformam o app de demo em ferramenta de uso diário do dono.
+> **Recomendação para retomar:** M2 e M3 concluídos. Próximo: **M1 (WhatsApp real)** — decidir provedor (whatsapp-web.js é o mais simples pra MVP, mas exige processo sempre rodando; Evolution API é mais robusto; API oficial Meta é a única sem risco de banimento, porém com mais burocracia). Depois **M4 (fotos reais)**.
 
 ---
 
@@ -124,3 +139,5 @@ Sessão longa, diversas frentes — todas commitadas e no GitHub (`main`):
 | 1 | 23/06/2026 | Notebook Renan | Criação do projeto V2 |
 | 2 | 24/06/2026 manhã | Renan Notebook Gordon | Mobile-first, modal produto, conta cliente |
 | 3 | 24/06/2026 tarde | Renan Notebook Gordon | Rebranding Malte & Tabaco, ícones FA6, toast, admin completo, 51 produtos reais |
+| 4 | 25/06/2026 manhã | Renan Notebook Gordon | M2 (relatório de vendas), pagamento na entrega (dinheiro/cartão), rename para adega-malte |
+| 5 | 26/06/2026 | sessão IA | Docs atualizados, M3 (controle de estoque) implementado e testado |
